@@ -1,0 +1,1 @@
+# Norm.-Markova-ALGORITM
