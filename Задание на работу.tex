@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{ЗАДАНИЕ}
+Построим нормальный алгоритм для вычисления функции \( f(x) = x + 1 \) не в одночной системе (как сделано на примере ниже), а в десятичной. В качестве алфавита возьмем переменные арабские цифры \( \mathbb{A} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\} \), а нормальный алгоритм будем строить в его расширении \( \mathbb{B} = \mathbb{A} \cup \{a, b\} \). Вот схема этого нормального алгоритма (читается по столбцам):
+
+\begin{align*}
+\begin{array}{lll}
+0b \rightarrow .1 & a0 \rightarrow 0a & 1a \rightarrow 1b \\
+1b \rightarrow .2 & a1 \rightarrow 1a & 2a \rightarrow 2b \\
+2b \rightarrow .3 & a2 \rightarrow 2a & 3a \rightarrow 3b \\
+3b \rightarrow .4 & a3 \rightarrow 3a & 4a \rightarrow 4b \\
+4b \rightarrow .5 & a4 \rightarrow 4a & 5a \rightarrow 5b \\
+5b \rightarrow .6 & a5 \rightarrow 5a & 6a \rightarrow 6b \\
+6b \rightarrow .7 & a6 \rightarrow 6a & 7a \rightarrow 7b \\
+7b \rightarrow .8 & a7 \rightarrow 7a & 8a \rightarrow 8b \\
+8b \rightarrow .9 & a8 \rightarrow 8a & 9a \rightarrow 9b \\
+9b \rightarrow b0 & a9 \rightarrow 9a & 9a \rightarrow 9b \\
+b \rightarrow . 1 & 0a \rightarrow 0b & \Lambda \rightarrow a. \\ 
+\end{array}
+\end{align*}
+
+Попытаемся применить алгоритм к пустому слову \( \Lambda \). Нетрудно понять, что на каждом шаге должна применяться самая последняя формула данной схемы. Получается бесконечный процесс:
+
+\[
+\Lambda \rightarrow a \rightarrow aa \rightarrow aaa \rightarrow aaaa \rightarrow \ldots
+\]
+
+Это означает, что к пустому слову данный алгоритм не применим.
+
+Если применить теперь алгоритм к слову 499, получим следующую последовательность слов: $499 \rightarrow {a}499$ (применена последняя формула) $\rightarrow 4a99$ (формула из середины второго столбца) $\rightarrow 49a9 \rightarrow 499b$ (дважды применена формула из конца второго столбца) $\rightarrow 499b$ (предпоследняя формула) $\rightarrow 49b0 \rightarrow 4b00$ (дважды применена предпоследняя формула первого столбца) $\rightarrow 500$ (применена формула из середины первого столбца).
+
+Таким образом, слово 499 перерабатывается данным нормальным алгоритмом в слово 500. Предлагается проверить, что $328 \rightarrow 329$, $789 \rightarrow 790$.
+
+В рассмотренном примере нормальный алгоритм построен в алфавите $B$, являющемся существенным расширением алфавита $A$ (т.е. $A \subset B$ и $A \neq B$), но данный алгоритм слов в алфавите $B$ перерабатывает слова в слова в алфавите $A$. В таком случае говорят, что алгоритм заданнад алфавитом $A$.
+
+
+\end{document}
